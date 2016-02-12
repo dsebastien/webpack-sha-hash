@@ -1,0 +1,17 @@
+# Own
+example/dest/*
+/dist
+/.tmp
+!example/dest/index.html
+
+# Node
+node_modules
+
+# NPM
+npm-debug.log
+./.npmignore
+
+# JetBrains IDEs
+*.iml
+.idea/
+.webstorm/

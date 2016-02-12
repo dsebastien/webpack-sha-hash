@@ -1,0 +1,16 @@
+sudo: false
+language: node_js
+cache:
+  directories:
+  - node_modules
+branches:
+  only:
+  - master
+notifications:
+  email: true
+node_js:
+  - '4.3'
+before_script:
+  - npm prune
+before_install:
+  - npm run setup

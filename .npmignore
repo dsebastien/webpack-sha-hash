@@ -1,0 +1,48 @@
+# Reference: https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package
+
+# Project specific
+src/
+example/
+.tmp/
+
+# Config files
+.editorconfig
+.jscsrc
+.jshintignore
+.jshintrc
+.travis.yml
+.nvmrc
+.babelrc
+.babelignore
+
+# Misc
+*.log
+
+# Node
+node_modules/
+
+# NPM
+npm-debug.log
+./.npmignore
+
+# Windows
+Desktop.ini
+
+# JetBrains IDEs
+*.iml
+.idea/
+.webstorm/
+
+# Git
+.git
+.gitattributes
+.gitignore
+.gitmodules
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
