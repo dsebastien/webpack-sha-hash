@@ -55,12 +55,13 @@
         "check-style": "jscs .",
         "check-quality": "jshint",
         "lint": "npm run check-style && npm run check-quality",
+        "pretest": "npm run build",
         "test": "jasmine-node --captureExceptions spec",
         "prebuild": "npm run clean",
         "build": "babel src -d dist",
         "compile": "npm run build",
         "start": "npm run build",
         "setup": "npm install --no-optional",
-        "prepublish": "npm run build && npm run test && npm run lint"
+        "prepublish": "npm run test && npm run lint"
     }
 }

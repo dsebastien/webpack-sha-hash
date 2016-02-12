@@ -1,11 +1,35 @@
 "use strict";
 
 const createHash = require("sha.js");
-const sha256 = createHash("sha256");
 
 class WebpackSHAHash {
+    /**
+     * Parse the options and initialize the plugin.
+     * @param options the options if any
+     */
     constructor(options = {}) {
-        // TODO handle options
+        // Hashing algorithm
+        if(!options.hasOwnProperty("hashingAlgorithm")){
+            options.hashingAlgorithm = "sha256"; // default
+        }
+
+        this.hashingAlgorithm = options.hashingAlgorithm;
+
+        try{
+            this.hashingAlgorithmInstance = createHash(this.hashingAlgorithm);
+        } catch(e) {
+            throw new Error("You have most probably provided an invalid value for the 'hashingAlgorithm' option of the WebpackSHAHash plugin! Error details: " + e.stack + "\n -----------");
+        }
+
+        // remove the option from the object once processed (so that we can identify if unknown options have been passed)
+        delete options.hashingAlgorithm;
+
+        // Check if unknown options were passed (i.e., fail fast and be helpful)
+        for(const prop in options){
+            if(options.hasOwnProperty(prop)) {
+                throw new Error("You have passed an unknown option to the WebpackSHAHash plugin: " + prop);
+            }
+        }
     }
 
     compareModules(a, b) {
@@ -39,7 +63,7 @@ class WebpackSHAHash {
         compiler.plugin("compilation", (compilation) => {
             compilation.plugin("chunk-hash", (chunk, chunkHash) => {
                 const source = chunk.modules.sort(this.compareModules).map(this.getModuleSource).reduce(this.concatenateSource, ""); // we provide an initialValue in case there is an empty module source. Ref: http://es5.github.io/#x15.4.4.21
-                const hash = sha256.update(source, "utf8");
+                const hash = this.hashingAlgorithmInstance.update(source, "utf8");
                 const calculatedChunkHash = hash.digest("hex");
 
                 chunkHash.digest = () => {

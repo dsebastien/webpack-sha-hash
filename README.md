@@ -48,9 +48,20 @@ module.exports = {
 Enjoy!
 
 ## Options
-Not implemented yet.
 
-Currently, the SHA-256 algorithm is used by default. In the future, you'll be able to choose which version of SHA to use.
+### hashingAlgorithm: use a different hashing algorithm
+The SHA-256 hashing algorithm is used by default. If you want, you can use any of the supported algorithms supported by sha.js: https://www.npmjs.com/package/sha.js
+
+To override the algorithm, just provide  the name of the one you want to use to the plugin:
+
+``` javascript
+...
+    plugins: [
+        new WebpackSHAHash({
+            hashingAlgorithm: "sha512"
+        })
+    ]
+```
 
 ## Contributing
 Take a look at the project's open [issues](https://github.com/dsebastien/webpack-sha-hash/issues) and [milestones](https://github.com/dsebastien/webpack-sha-hash/milestones).
