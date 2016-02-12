@@ -1,6 +1,6 @@
 {
     "name": "webpack-sha-hash",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Plugin to replace a standard webpack chunkhash with SHA",
     "author": {
         "name": "Sebastien Dubois",
@@ -29,9 +29,9 @@
         "sha.js": "2.4.x"
     },
     "devDependencies": {
-        "argparse": "1.0.4",
+        "argparse": "1.0.x",
         "jasmine-node": "1.14.x",
-        "jshint": "2.8.x",
+        "jshint": "2.9.x",
         "jscs": "2.9.x",
         "rimraf": "2.5.x",
         "webpack": "1.12.x",
