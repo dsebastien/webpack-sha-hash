@@ -120,4 +120,45 @@ describe("WebpackSHAHash", () => {
             });
         });
     });
+
+    it("Should generate same hash if content not changed", (done) => {
+        var config = {
+            entry: {
+                entry: path.join(FIXTURES, "entry.js")
+            },
+            plugins: [
+                new WebpackSHAHash()
+            ],
+            output: {
+                path: OUTPUT_DIR,
+                filename: "[name]-bundle.js",
+                chunkFilename: "[chunkhash].[id].chunk.js"
+            }
+        };
+
+        webpack(config, (err, stats) => {
+            expect(err).toBeFalsy();
+            expect(stats.compilation.errors).toEqual([]);
+            expect(stats.compilation.warnings).toEqual([]);
+
+            let firstRunResult = fs.readdirSync(OUTPUT_DIR);
+
+            expect(firstRunResult.length).toEqual(2);
+
+            rimraf(OUTPUT_DIR, () => {
+                webpack(config, (err, stats) => {
+                    expect(err).toBeFalsy();
+                    expect(stats.compilation.errors).toEqual([]);
+                    expect(stats.compilation.warnings).toEqual([]);
+
+                    let secondRunResult = fs.readdirSync(OUTPUT_DIR);
+
+                    expect(secondRunResult.length).toEqual(2);
+
+                    expect(firstRunResult).toEqual(secondRunResult);
+                    done();
+                });
+            });
+        });
+    });
 });

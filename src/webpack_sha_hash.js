@@ -16,7 +16,7 @@ class WebpackSHAHash {
         this.hashingAlgorithm = options.hashingAlgorithm;
 
         try{
-            this.hashingAlgorithmInstance = createHash(this.hashingAlgorithm);
+            createHash(this.hashingAlgorithm);
         } catch(e) {
             throw new Error("You have most probably provided an invalid value for the 'hashingAlgorithm' option of the WebpackSHAHash plugin! Error details: " + e.stack + "\n -----------");
         }
@@ -54,6 +54,10 @@ class WebpackSHAHash {
         return result + moduleSource;
     }
 
+    generateHash(content) {
+        return createHash(this.hashingAlgorithm).update(content, "utf8").digest("hex");
+    }
+
     /**
      * Called by Webpack which gives a referencer to its compiler object.
      * Reference: https://github.com/webpack/docs/wiki/plugins
@@ -63,8 +67,7 @@ class WebpackSHAHash {
         compiler.plugin("compilation", (compilation) => {
             compilation.plugin("chunk-hash", (chunk, chunkHash) => {
                 const source = chunk.modules.sort(this.compareModules).map(this.getModuleSource).reduce(this.concatenateSource, ""); // we provide an initialValue in case there is an empty module source. Ref: http://es5.github.io/#x15.4.4.21
-                const hash = this.hashingAlgorithmInstance.update(source, "utf8");
-                const calculatedChunkHash = hash.digest("hex");
+                const calculatedChunkHash = this.generateHash(source);
 
                 chunkHash.digest = () => {
                     return calculatedChunkHash;
