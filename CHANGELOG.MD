@@ -1,3 +1,5 @@
+* 1.1.0
+  * issue with hashes creation reported & fixed by @kovenliao (thanks!); see #6
 * 1.0.1
   * specify sha.js version in dependencies
 * 1.0.0
