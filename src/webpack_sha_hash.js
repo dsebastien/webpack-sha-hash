@@ -65,10 +65,8 @@ class WebpackSHAHash {
      */
     apply(compiler) {
         compiler.plugin("compilation", (compilation) => {
-          compilation.plugin("chunk-hash", (chunk, chunkHash) => {
-                const chunkModules = chunk.mapModules ? chunk.mapModules(function (c) {
-                  return c;
-                }) : chunk.modules;
+            compilation.plugin("chunk-hash", (chunk, chunkHash) => {
+                const chunkModules = chunk.mapModules ? chunk.mapModules((c) => c) : chunk.modules;
                 const source = chunkModules.sort(this.compareModules).map(this.getModuleSource).reduce(this.concatenateSource, ""); // we provide an initialValue in case there is an empty module source. Ref: http://es5.github.io/#x15.4.4.21
                 const calculatedChunkHash = this.generateHash(source);
 
