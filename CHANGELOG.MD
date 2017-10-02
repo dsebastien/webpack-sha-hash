@@ -1,3 +1,5 @@
+* 2.0.0
+  * added support for Webpack 3 thanks to @cslinmiso
 * 1.1.0
   * issue with hashes creation reported & fixed by @kovenliao (thanks!); see #6
 * 1.0.1
