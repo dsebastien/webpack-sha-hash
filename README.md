@@ -5,7 +5,7 @@
 [![Build Status](https://secure.travis-ci.org/dsebastien/webpack-sha-hash.png?branch=master)](https://travis-ci.org/dsebastien/webpack-sha-hash)
 [![Dependency Status](https://david-dm.org/dsebastien/webpack-sha-hash.svg?theme=shields.io&style=flat)](https://david-dm.org/dsebastien/webpack-sha-hash)
 [![devDependency Status](https://david-dm.org/dsebastien/webpack-sha-hash/dev-status.svg?theme=shields.io&style=flat)](https://david-dm.org/dsebastien/webpack-sha-hash#info=devDependencies)
-[![License](https://img.shields.io/cocoapods/l/AFNetworking.svg)](LICENSE.MD)
+[![License](https://img.shields.io/cocoapods/l/AFNetworking.svg)](LICENSE.MD) [![Greenkeeper badge](https://badges.greenkeeper.io/dsebastien/webpack-sha-hash.svg)](https://greenkeeper.io/)
 
 ## About
 Using this Webpack plugin, you can easily generate SHA hashes for your Webpack chunks.
